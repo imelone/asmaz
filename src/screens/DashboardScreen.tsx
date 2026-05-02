@@ -1,0 +1,171 @@
+import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+import styled from 'styled-components';
+
+const Container = styled.div`
+  background-color: white;
+  padding: 2rem;
+  border-radius: 0.5rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  max-width: 600px;
+  margin: 2rem auto;
+`;
+
+const Title = styled.h1`
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+  text-align: center;
+  color: #1f2937;
+`;
+
+const UserInfoBar = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #f3f4f6;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  margin-bottom: 2rem;
+  border: 1px solid #e5e7eb;
+`;
+
+const UserInfoItem = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 1;
+`;
+
+const UserInfoIcon = styled.span`
+  font-size: 1.5rem;
+  margin-bottom: 0.25rem;
+`;
+
+const UserInfoLabel = styled.span`
+  font-size: 0.75rem;
+  color: #6b7280;
+  text-align: center;
+`;
+
+const UserInfoValue = styled.span`
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #1f2937;
+  text-align: center;
+`;
+
+const Grid = styled.div`
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+`;
+
+const SquareButton = styled.button`
+  background-color: white;
+  border: 2px solid #e5e7eb;
+  border-radius: 0.75rem;
+  padding: 1.5rem;
+  cursor: pointer;
+  transition: all 0.2s;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 140px;
+
+  &:hover {
+    border-color: #3b82f6;
+    background-color: #eff6ff;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+
+  &:active {
+    transform: translateY(0);
+  }
+`;
+
+const ButtonIcon = styled.span`
+  font-size: 2.5rem;
+  margin-bottom: 0.5rem;
+`;
+
+const ButtonLabel = styled.span`
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #374151;
+  text-align: center;
+`;
+
+interface UserData {
+  email: string;
+  dateOfBirth: string;
+  age: number;
+}
+
+const DashboardScreen: React.FC = () => {
+  const navigate = useNavigate();
+  const [userData, setUserData] = useState<UserData | null>(null);
+
+  useEffect(() => {
+    const savedData = localStorage.getItem('userData');
+    if (savedData) {
+      setUserData(JSON.parse(savedData));
+    }
+  }, []);
+
+  const handleNavigate = (path: string) => {
+    navigate(path);
+  };
+
+  return (
+    <div className="bg-gray-100 min-h-screen p-4">
+      <div className="max-w-4xl mx-auto">
+        <h1 className="text-3xl font-bold text-center mb-2">AsmaZ</h1>
+        <h2 className="text-xl text-center text-gray-600 mb-8">Controla tu asma</h2>
+        
+        <Container>
+          <Title>Conozca los beneficios</Title>
+          
+          <UserInfoBar>
+            <UserInfoItem>
+              <UserInfoIcon>✉️</UserInfoIcon>
+              <UserInfoLabel>Email</UserInfoLabel>
+              <UserInfoValue>{userData?.email || 'No disponible'}</UserInfoValue>
+            </UserInfoItem>
+            <UserInfoItem>
+              <UserInfoIcon>🎂</UserInfoIcon>
+              <UserInfoLabel>Edad</UserInfoLabel>
+              <UserInfoValue>{userData?.age ? `${userData.age} años` : 'No disponible'}</UserInfoValue>
+            </UserInfoItem>
+          </UserInfoBar>
+
+          <Grid>
+            <SquareButton onClick={() => handleNavigate('/act')}>
+              <ButtonIcon>🏥</ButtonIcon>
+              <ButtonLabel>Test de Control del Asma</ButtonLabel>
+            </SquareButton>
+
+            <SquareButton onClick={() => handleNavigate('/doses')}>
+              <ButtonIcon>💊</ButtonIcon>
+              <ButtonLabel>Control de Dosis</ButtonLabel>
+            </SquareButton>
+
+            <SquareButton onClick={() => handleNavigate('/reminders')}>
+              <ButtonIcon>⏰</ButtonIcon>
+              <ButtonLabel>Recordatorios</ButtonLabel>
+            </SquareButton>
+
+            <SquareButton onClick={() => handleNavigate('/crisis')}>
+              <ButtonIcon>📋</ButtonIcon>
+              <ButtonLabel>Registro de Crisis</ButtonLabel>
+            </SquareButton>
+          </Grid>
+        </Container>
+      </div>
+    </div>
+  );
+};
+
+export default DashboardScreen;

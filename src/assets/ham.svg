@@ -1,0 +1,14 @@
+<svg width="100" height="100" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Left Lung -->
+  <path d="M20 30C20 45 30 55 35 60C40 65 45 65 50 60C55 65 60 65 65 60C70 55 80 45 80 30C80 15 65 5 50 5C35 5 20 15 20 30Z" fill="#93C5FD" stroke="#3B82F6" stroke-width="2"/>
+  
+  <!-- Right Lung -->
+  <path d="M30 35C30 50 40 60 45 65C47.5 67.5 52.5 67.5 55 65C60 60 70 50 70 35C70 20 55 10 40 10C25 10 30 20 30 35Z" fill="#93C5FD" stroke="#3B82F6" stroke-width="2"/>
+  
+  <!-- Trachea -->
+  <path d="M50 5V25C50 30 50 35 50 40C50 45 50 50 50 55C50 60 50 65 50 70V95" stroke="#3B82F6" stroke-width="4" stroke-linecap="round"/>
+  
+  <!-- Bronchi -->
+  <path d="M50 40L35 45" stroke="#3B82F6" stroke-width="3" stroke-linecap="round"/>
+  <path d="M50 40L65 45" stroke="#3B82F6" stroke-width="3" stroke-linecap="round"/>
+</svg>
