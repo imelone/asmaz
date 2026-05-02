@@ -1,14 +1,17 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
+import logo from '../assets/logo.png';
 
 const Container = styled.div`
   background-color: white;
-  padding: 2rem;
+  padding: 1rem;
   border-radius: 0.5rem;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  max-width: 400px;
-  margin: 2rem auto;
+  width: 100%;
+  max-width: 700px;
+  margin: 0.5rem auto;
+  box-sizing: border-box;
 `;
 
 const Title = styled.h1`
@@ -21,6 +24,7 @@ const Title = styled.h1`
 
 const FormGroup = styled.div`
   margin-bottom: 1.5rem;
+  width: 100%;
 `;
 
 const Label = styled.label`
@@ -38,6 +42,8 @@ const Input = styled.input`
   border-radius: 0.375rem;
   font-size: 1rem;
   transition: border-color 0.2s;
+  text-align: left;
+  box-sizing: border-box;
 
   &:focus {
     outline: none;
@@ -58,6 +64,7 @@ const Button = styled.button`
   cursor: pointer;
   transition: background-color 0.2s;
   margin-top: 1rem;
+  box-sizing: border-box;
 
   &:hover {
     background-color: #2563eb;
@@ -135,9 +142,11 @@ const RegistrationScreen: React.FC = () => {
   };
 
   return (
-    <div className="bg-gray-100 min-h-screen p-4">
-      <div className="max-w-4xl mx-auto">
-        <h1 className="text-3xl font-bold text-center mb-2">AsmaZ</h1>
+    <div className="min-h-screen bg-gray-100 p-2 flex items-center justify-center">
+      <div className="w-full">
+        <div className="flex justify-center mb-2">
+          <img src={logo} alt="AsmaZ Logo" style={{ width: '120px', height: 'auto' }} />
+        </div>
         <h2 className="text-xl text-center text-gray-600 mb-8">Controla tu asma</h2>
         
         <Container>

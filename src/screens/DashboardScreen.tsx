@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
+import logo from '../assets/logo.png';
 
 const Container = styled.div`
   background-color: white;
@@ -122,7 +123,9 @@ const DashboardScreen: React.FC = () => {
   return (
     <div className="bg-gray-100 min-h-screen p-4">
       <div className="max-w-4xl mx-auto">
-        <h1 className="text-3xl font-bold text-center mb-2">AsmaZ</h1>
+        <div className="flex justify-center mb-2">
+          <img src={logo} alt="AsmaZ Logo" style={{ width: '120px', height: 'auto' }} />
+        </div>
         <h2 className="text-xl text-center text-gray-600 mb-8">Controla tu asma</h2>
         
         <Container>

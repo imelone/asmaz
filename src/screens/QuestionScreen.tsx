@@ -11,53 +11,53 @@ interface QuestionScreenProps {
 
 const questions = [
   {
-    question: "¿CUÁNTO TIEMPO LE HA IMPEDIDO SU ASMA HACER TODO LO QUE QUERÍA EN EL TRABAJO O EN LA CASA?",
+    question: "Durante las últimas 4 semanas, ¿con qué frecuencia su asma le impidió realizar sus tareas habituales en el trabajo, los estudios o el hogar?",
     options: [
-      { text: "NUNCA", color: 'green' as ColorVariant, points: 5 },
-      { text: "UN POCO", color: 'blue' as ColorVariant, points: 4 },
-      { text: "ALGO DE TIEMPO", color: 'yellow' as ColorVariant, points: 3 },
-      { text: "LA MAYORÍA DEL TIEMPO", color: 'purple' as ColorVariant, points: 2 },
-      { text: "SIEMPRE", color: 'red' as ColorVariant, points: 1 }
+      { text: "Siempre", color: 'red' as ColorVariant, points: 1 },
+      { text: "Casi siempre", color: 'purple' as ColorVariant, points: 2 },
+      { text: "Algunas veces", color: 'yellow' as ColorVariant, points: 3 },
+      { text: "Pocas veces", color: 'blue' as ColorVariant, points: 4 },
+      { text: "Nunca", color: 'green' as ColorVariant, points: 5 }
     ]
   },
   {
-    question: "¿CON QUÉ FRECUENCIA LE HA FALTADO AIRE?",
+    question: "Durante las últimas 4 semanas, ¿con qué frecuencia sintió falta de aire?",
     options: [
-      { text: "NUNCA", color: 'green' as ColorVariant, points: 5 },
-      { text: "1-2 VECES POR SEMANA", color: 'blue' as ColorVariant, points: 4 },
-      { text: "DE 3-6 VECES POR SEMANA", color: 'yellow' as ColorVariant, points: 3 },
-      { text: "1 VEZ AL DÍA", color: 'purple' as ColorVariant, points: 2 },
-      { text: "MÁS DE 1 VEZ AL DÍA", color: 'red' as ColorVariant, points: 1 }
+      { text: "Más de una vez por día", color: 'red' as ColorVariant, points: 1 },
+      { text: "Una vez por día", color: 'purple' as ColorVariant, points: 2 },
+      { text: "De 3 a 6 veces por semana", color: 'yellow' as ColorVariant, points: 3 },
+      { text: "Una o dos veces por semana", color: 'blue' as ColorVariant, points: 4 },
+      { text: "Nunca", color: 'green' as ColorVariant, points: 5 }
     ]
   },
   {
-    question: "¿CON QUÉ FRECUENCIA SUS SÍNTOMAS DEL ASMA (PITOS, TOS, FALTA DE AIRE O PRESIÓN EN EL PECHO) LE HAN DESPERTADO POR LA NOCHE O MÁS TEMPRANO POR LA MAÑANA? (POR SEMANA)",
+    question: "Durante las últimas 4 semanas, ¿con qué frecuencia los síntomas de asma (sibilidos en el pecho, tos, falta de aire, opresión o dolor en el pecho) lo/a despertaron durante la noche o más temprano que de costumbre a la mañana?",
     options: [
-      { text: "NUNCA", color: 'green' as ColorVariant, points: 5 },
-      { text: "1-2 NOCHES EN LAS 4 SEMANAS PREVIAS", color: 'blue' as ColorVariant, points: 4 },
-      { text: "1 NOCHE", color: 'yellow' as ColorVariant, points: 3 },
-      { text: "2-3 NOCHES", color: 'purple' as ColorVariant, points: 2 },
-      { text: "4 NOCHES O MÁS", color: 'red' as ColorVariant, points: 1 }
+      { text: "4 o más noches por semana", color: 'red' as ColorVariant, points: 1 },
+      { text: "De 2 a 3 noches por semana", color: 'purple' as ColorVariant, points: 2 },
+      { text: "Una vez por semana", color: 'yellow' as ColorVariant, points: 3 },
+      { text: "Una o dos veces", color: 'blue' as ColorVariant, points: 4 },
+      { text: "Nunca", color: 'green' as ColorVariant, points: 5 }
     ]
   },
   {
-    question: "¿CON QUÉ FRECUENCIA HA UTILIZADO EL INHALADOR DE RESCATE?",
+    question: "Durante las últimas 4 semanas, ¿con qué frecuencia usó su inhalador o nebulizador con medicación de rescate, tal como salbutamol?",
     options: [
-      { text: "NUNCA", color: 'green' as ColorVariant, points: 5 },
-      { text: "1 VEZ O MENOS POR SEMANA", color: 'blue' as ColorVariant, points: 4 },
-      { text: "2 O 3 VECES POR SEMANA", color: 'yellow' as ColorVariant, points: 3 },
-      { text: "1 O 2 VECES AL DÍA", color: 'purple' as ColorVariant, points: 2 },
-      { text: "3 O MÁS VECES", color: 'red' as ColorVariant, points: 1 }
+      { text: "3 o más veces por día", color: 'red' as ColorVariant, points: 1 },
+      { text: "1 ó 2 veces por día", color: 'purple' as ColorVariant, points: 2 },
+      { text: "2 ó 3 veces por semana", color: 'yellow' as ColorVariant, points: 3 },
+      { text: "Una vez por semana o menos", color: 'blue' as ColorVariant, points: 4 },
+      { text: "Nunca", color: 'green' as ColorVariant, points: 5 }
     ]
   },
   {
-    question: "¿CÓMO DIRÍA QUE HA ESTADO CONTROLADA SU ASMA DURANTE LAS 4 ÚLTIMAS SEMANAS?",
+    question: "¿Cómo calificaría el control de su asma durante las últimas 4 semanas?",
     options: [
-      { text: "CONTROLADA", color: 'green' as ColorVariant, points: 5 },
-      { text: "BIEN CONTROLADA", color: 'blue' as ColorVariant, points: 4 },
-      { text: "ALGO CONTROLADA", color: 'yellow' as ColorVariant, points: 3 },
-      { text: "MAL CONTROLADA", color: 'purple' as ColorVariant, points: 2 },
-      { text: "DESCONTROLADA", color: 'red' as ColorVariant, points: 1 }
+      { text: "Para nada controlada", color: 'red' as ColorVariant, points: 1 },
+      { text: "Mal controlada", color: 'purple' as ColorVariant, points: 2 },
+      { text: "Algo controlada", color: 'yellow' as ColorVariant, points: 3 },
+      { text: "Bien controlada", color: 'blue' as ColorVariant, points: 4 },
+      { text: "Totalmente controlada", color: 'green' as ColorVariant, points: 5 }
     ]
   }
 ];

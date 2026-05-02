@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
-import lungIcon from '../assets/lung.png';
+import logo from '../assets/logo.png';
 
 interface SplashScreenProps {
   onComplete: () => void;
@@ -32,20 +32,12 @@ const SplashScreen: React.FC<SplashScreenProps> = ({ onComplete }) => {
         className="w-15 h-15"
       >
         <img 
-          src={lungIcon} 
-          alt="Lung Icon" 
+          src={logo} 
+          alt="Logo" 
           className="w-15 h-15 mb-4" 
           sizes='10px'
         />
       </motion.div>
-      <motion.h1 
-        className="text-2xl font-bold text-blue-600 mt-4"
-        initial={{ y: 20, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
-        transition={{ duration: 0.5, delay: 0.4 }}
-      >
-        AsmaZ
-      </motion.h1>
       <motion.p 
         className="text-gray-600 mt-2"
         initial={{ y: 20, opacity: 0 }}

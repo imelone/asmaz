@@ -103,7 +103,24 @@ const DoseTrackingScreen: React.FC = () => {
   const navigate = useNavigate();
   const [puffsPerDay, setPuffsPerDay] = useState('');
   const [aerosolDoses, setAerosolDoses] = useState('');
-  const [currentDoses, setCurrentDoses] = useState<number>(0);
+  const [aerosolStartDate, setAerosolStartDate] = useState('');
+
+  // Auto-calculate remaining doses based on start date, capacity and daily usage
+  const calculateRemainingDoses = (): number => {
+    if (!aerosolStartDate || !aerosolDoses || !puffsPerDay) {
+      return parseInt(aerosolDoses) || 0;
+    }
+    const start = new Date(aerosolStartDate);
+    const today = new Date();
+    const diffTime = today.getTime() - start.getTime();
+    const diffDays = Math.max(0, Math.floor(diffTime / (1000 * 60 * 60 * 24)));
+    const totalCapacity = parseInt(aerosolDoses) || 0;
+    const dailyPuffs = parseInt(puffsPerDay) || 0;
+    const usedDoses = diffDays * dailyPuffs;
+    return Math.max(0, totalCapacity - usedDoses);
+  };
+
+  const remainingDoses = calculateRemainingDoses();
 
   useEffect(() => {
     // Load saved dose data
@@ -112,7 +129,7 @@ const DoseTrackingScreen: React.FC = () => {
       const data = JSON.parse(savedData);
       setPuffsPerDay(data.puffsPerDay || '');
       setAerosolDoses(data.aerosolDoses || '');
-      setCurrentDoses(data.currentDoses || 0);
+      setAerosolStartDate(data.aerosolStartDate || '');
     }
   }, []);
 
@@ -120,24 +137,11 @@ const DoseTrackingScreen: React.FC = () => {
     const doseData = {
       puffsPerDay,
       aerosolDoses,
-      currentDoses,
+      aerosolStartDate,
       lastUpdated: new Date().toISOString()
     };
     localStorage.setItem('doseData', JSON.stringify(doseData));
     alert('Datos de dosis guardados correctamente');
-  };
-
-  const handleDecreaseDose = () => {
-    if (currentDoses > 0) {
-      setCurrentDoses(currentDoses - 1);
-    }
-  };
-
-  const handleIncreaseDose = () => {
-    const maxDoses = parseInt(aerosolDoses) || 120;
-    if (currentDoses < maxDoses) {
-      setCurrentDoses(currentDoses + 1);
-    }
   };
 
   return (
@@ -172,28 +176,41 @@ const DoseTrackingScreen: React.FC = () => {
               <Select value={aerosolDoses} onChange={(e) => setAerosolDoses(e.target.value)}>
                 <option value="">Seleccionar...</option>
                 <option value="60">60 dosis</option>
+                <option value="100">100 dosis</option>
                 <option value="120">120 dosis</option>
+                <option value="150">150 dosis</option>
                 <option value="200">200 dosis</option>
               </Select>
             </FormGroup>
             
             <FormGroup>
-              <Label>Dosis restantes</Label>
-              <div style={{ display: 'flex', gap: '0.5rem', alignItems: 'center' }}>
-                <Button onClick={handleDecreaseDose} style={{ marginTop: 0, width: 'auto' }}>-</Button>
-                <Input 
-                  type="number" 
-                  value={currentDoses} 
-                  onChange={(e) => setCurrentDoses(parseInt(e.target.value) || 0)}
-                  style={{ textAlign: 'center' }}
-                />
-                <Button onClick={handleIncreaseDose} style={{ marginTop: 0, width: 'auto' }}>+</Button>
+              <Label>Fecha de inicio del aerosol</Label>
+              <Input
+                type="date"
+                value={aerosolStartDate}
+                onChange={(e) => setAerosolStartDate(e.target.value)}
+                style={{ textAlign: 'left' }}
+              />
+            </FormGroup>
+
+            <FormGroup>
+              <Label>Dosis restantes (calculado automáticamente)</Label>
+              <div style={{ 
+                padding: '0.75rem', 
+                border: '1px solid #d1d5db', 
+                borderRadius: '0.375rem', 
+                fontSize: '1rem',
+                backgroundColor: '#f9fafb',
+                textAlign: 'center',
+                fontWeight: 500
+              }}>
+                {remainingDoses} / {aerosolDoses || '0'} dosis
               </div>
             </FormGroup>
 
             {aerosolDoses && (
               <div style={{ marginTop: '1rem', padding: '1rem', backgroundColor: '#fef3c7', borderRadius: '0.375rem' }}>
-                <strong>Progreso:</strong> {currentDoses} / {aerosolDoses} dosis restantes
+                <strong>Progreso:</strong> {remainingDoses} / {aerosolDoses} dosis restantes
                 <div style={{ 
                   width: '100%', 
                   height: '8px', 
@@ -202,7 +219,7 @@ const DoseTrackingScreen: React.FC = () => {
                   marginTop: '0.5rem' 
                 }}>
                   <div style={{ 
-                    width: `${(currentDoses / parseInt(aerosolDoses)) * 100}%`, 
+                    width: `${(remainingDoses / parseInt(aerosolDoses)) * 100}%`, 
                     height: '100%', 
                     backgroundColor: '#10b981', 
                     borderRadius: '4px' 
