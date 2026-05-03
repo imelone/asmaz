@@ -118,7 +118,7 @@ const QuestionScreen: React.FC<QuestionScreenProps> = ({ questionNumber }) => {
         <div className="flex justify-center mb-2">
           <img src={logo} alt="AsmaZ Logo" style={{ width: '120px', height: 'auto' }} />
         </div>
-        <h2 className="text-xl text-center text-gray-600 mb-8">Controla tu asma</h2>
+        <h2 style={{ fontSize: '1.25rem', textAlign: 'center', color: '#4b5563', marginBottom: '2rem' }}>Controla tu asma</h2>
         
         <Container>
           <h2 className="text-2xl font-semibold mb-4">Pregunta {questionNumber} de {totalQuestions}</h2>
