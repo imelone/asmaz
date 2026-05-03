@@ -113,9 +113,9 @@ const QuestionScreen: React.FC<QuestionScreenProps> = ({ questionNumber }) => {
   };
 
   return (
-    <div className="bg-white min-h-screen py-4">
-      <div className="w-full mx-auto">
-        <div className="flex justify-center mb-2">
+    <div style={{ backgroundColor: 'white', minHeight: '100vh', paddingTop: '1rem', paddingBottom: '1rem' }}>
+      <div style={{ width: '100%', marginLeft: 'auto', marginRight: 'auto' }}>
+        <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '0.5rem' }}>
           <img src={logo} alt="AsmaZ Logo" style={{ width: '120px', height: 'auto' }} />
         </div>
         <h2 style={{ fontSize: '1.25rem', textAlign: 'center', color: '#4b5563', marginBottom: '2rem' }}>Controla tu asma</h2>
