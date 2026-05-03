@@ -1,16 +1,8 @@
 import React from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
+import { Container, Button } from '../components/ui';
 
-const ResultsContainer = styled.div`
-  background-color: white;
-  padding: 2rem;
-  border-radius: 0.5rem;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  max-width: 600px;
-  margin: 0 auto;
-  box-sizing: border-box;
-`;
 
 const ScoreScale = styled.div`
   position: relative;
@@ -69,25 +61,6 @@ const ScoreText = styled.div`
   font-weight: 500;
 `;
 
-const RestartButton = styled.button`
-  display: block;
-  width: 100%;
-  padding: 0.75rem 1.5rem;
-  background-color: #3b82f6;
-  color: white;
-  border: none;
-  border-radius: 0.375rem;
-  font-size: 1rem;
-  font-weight: 500;
-  cursor: pointer;
-  transition: background-color 0.2s;
-  margin-top: 2rem;
-  
-  &:hover {
-    background-color: #2563eb;
-  }
-`;
-
 const ResultsScreen: React.FC = () => {
   const location = useLocation();
   const navigate = useNavigate();
@@ -108,7 +81,7 @@ const ResultsScreen: React.FC = () => {
         <h1 className="text-3xl font-bold text-center mb-2">Resultados</h1>
         <h2 className="text-xl text-center text-gray-600 mb-8">Control de Asma</h2>
         
-        <ResultsContainer>
+        <Container>
           <h3 className="text-xl font-semibold mb-4">Tu puntuación: {score} de {maxScore} puntos</h3>
           
           <ScoreText>{getResultMessage()}</ScoreText>
@@ -130,10 +103,10 @@ const ResultsScreen: React.FC = () => {
             <span>Poco controlado</span>
           </ScoreLabels>
           
-          <RestartButton onClick={() => navigate('/dashboard')}>
+          <Button onClick={() => navigate('/dashboard')}>
             Volver al inicio
-          </RestartButton>
-        </ResultsContainer>
+          </Button>
+        </Container>
       </div>
     </div>
   );

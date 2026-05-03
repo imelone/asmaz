@@ -103,8 +103,6 @@ export const Select = styled.select`
   font-size: 1rem;
   background-color: white;
   box-sizing: border-box;
-  text-align: center;
-  text-align-last: center;
 
   &:focus {
     outline: none;
@@ -169,4 +167,10 @@ export const CardTitle = styled.h2`
   font-weight: 600;
   margin-bottom: 0.75rem;
   color: #374151;
+`;
+
+export const ErrorMessage = styled.p`
+  color: #ef4444;
+  font-size: 0.875rem;
+  margin-top: 0.25rem;
 `;

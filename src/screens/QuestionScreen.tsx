@@ -1,19 +1,8 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import styled from 'styled-components';
 import logo from '../assets/logo.png';
+import { Container, Button } from '../components/ui';
 import { OptionButton, ButtonContent, OptionsContainer } from './QuestionScreen.styles';
-
-const Container = styled.div`
-  background-color: white;
-  padding: 1.5rem;
-  border-radius: 0.5rem;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  width: 100%;
-  max-width: 100%;
-  margin: 0 auto;
-  box-sizing: border-box;
-`;
 
 type ColorVariant = 'green' | 'blue' | 'yellow' | 'purple' | 'red';
 
@@ -150,17 +139,13 @@ const QuestionScreen: React.FC<QuestionScreenProps> = ({ questionNumber }) => {
         ))}
       </OptionsContainer>
 
-      <button
+      <Button
         onClick={handleNext}
         disabled={selectedAnswer === null}
-        className={`w-full py-3 px-4 rounded-lg font-medium transition-colors ${
-          selectedAnswer === null 
-            ? 'bg-gray-300 text-gray-500 cursor-not-allowed' 
-            : 'bg-blue-500 hover:bg-blue-600 text-white'
-        }`}
+        style={{ backgroundColor: selectedAnswer === null ? '#d1d5db' : undefined }}
       >
         {questionNumber === totalQuestions ? 'Ver Resultados' : 'Siguiente Pregunta'}
-      </button>
+      </Button>
         </Container>
       </div>
     </div>

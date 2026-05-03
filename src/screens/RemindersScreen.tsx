@@ -2,32 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import logo from '../assets/logo.png';
-
-const Container = styled.div`
-  background-color: white;
-  padding: 2rem;
-  border-radius: 0.5rem;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  max-width: 600px;
-  margin: 2rem auto;
-  box-sizing: border-box;
-`;
-
-const Title = styled.h1`
-  font-size: 1.5rem;
-  font-weight: 600;
-  margin-bottom: 1.5rem;
-  text-align: center;
-  color: #1f2937;
-`;
-
-const ReminderCard = styled.div`
-  padding: 1.5rem;
-  background-color: #f9fafb;
-  border-radius: 0.5rem;
-  border: 1px solid #e5e7eb;
-  margin-bottom: 1rem;
-`;
+import { Container, Title, Card, FormGroup, Label, Input, Select, Button, BackButton } from '../components/ui';
 
 const CardTitle = styled.h2`
   font-size: 1.125rem;
@@ -37,71 +12,6 @@ const CardTitle = styled.h2`
   display: flex;
   align-items: center;
   gap: 0.5rem;
-`;
-
-const FormGroup = styled.div`
-  margin-bottom: 1rem;
-`;
-
-const Label = styled.label`
-  display: block;
-  font-size: 0.875rem;
-  font-weight: 500;
-  color: #374151;
-  margin-bottom: 0.5rem;
-`;
-
-const Input = styled.input`
-  width: 100%;
-  padding: 0.75rem;
-  border: 1px solid #d1d5db;
-  border-radius: 0.375rem;
-  font-size: 1rem;
-`;
-
-const Select = styled.select`
-  width: 100%;
-  padding: 0.75rem;
-  border: 1px solid #d1d5db;
-  border-radius: 0.375rem;
-  font-size: 1rem;
-  background-color: white;
-`;
-
-const Button = styled.button`
-  width: 100%;
-  padding: 0.75rem 1.5rem;
-  background-color: #3b82f6;
-  color: white;
-  border: none;
-  border-radius: 0.375rem;
-  font-size: 1rem;
-  font-weight: 500;
-  cursor: pointer;
-  transition: background-color 0.2s;
-  margin-top: 0.5rem;
-
-  &:hover {
-    background-color: #2563eb;
-  }
-`;
-
-const BackButton = styled.button`
-  width: 100%;
-  padding: 0.75rem 1.5rem;
-  background-color: #6b7280;
-  color: white;
-  border: none;
-  border-radius: 0.375rem;
-  font-size: 1rem;
-  font-weight: 500;
-  cursor: pointer;
-  transition: background-color 0.2s;
-  margin-top: 1rem;
-
-  &:hover {
-    background-color: #4b5563;
-  }
 `;
 
 interface Reminder {
@@ -198,7 +108,7 @@ const RemindersScreen: React.FC = () => {
         <Container>
           <Title>Recordatorios</Title>
 
-          <ReminderCard>
+          <Card>
             <CardTitle>➕ Agregar Nuevo Recordatorio</CardTitle>
             <FormGroup>
               <Label>Tipo de Recordatorio</Label>
@@ -253,7 +163,7 @@ const RemindersScreen: React.FC = () => {
             <Button onClick={handleAddReminder}>
               Agregar Recordatorio
             </Button>
-          </ReminderCard>
+          </Card>
 
           <h3 style={{ fontSize: '1.125rem', fontWeight: 600, marginBottom: '1rem', color: '#374151' }}>
             Mis Recordarios ({reminders.length})
@@ -265,25 +175,23 @@ const RemindersScreen: React.FC = () => {
             </p>
           ) : (
             reminders.map((reminder) => (
-              <ReminderCard key={reminder.id}>
-                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
-                  <div style={{ flex: 1 }}>
-                    <CardTitle>
-                      {getReminderIcon(reminder.type)} {reminder.title}
-                    </CardTitle>
-                    <p style={{ fontSize: '0.875rem', color: '#6b7280', marginBottom: '0.25rem' }}>
-                      <strong>Tipo:</strong> {getReminderTypeLabel(reminder.type)}
-                    </p>
-                    <p style={{ fontSize: '0.875rem', color: '#6b7280', marginBottom: '0.25rem' }}>
-                      <strong>Fecha:</strong> {new Date(reminder.date).toLocaleDateString('es-AR')}
-                      {reminder.time && ` a las ${reminder.time}`}
-                    </p>
-                    {reminder.notes && (
-                      <p style={{ fontSize: '0.875rem', color: '#6b7280' }}>
-                        <strong>Notas:</strong> {reminder.notes}
-                      </p>
-                    )}
-                  </div>
+              <Card key={reminder.id}>
+                <CardTitle style={{ justifyContent: 'center' }}>
+                  {getReminderIcon(reminder.type)} {reminder.title}
+                </CardTitle>
+                <p style={{ fontSize: '0.875rem', color: '#6b7280', margin: 0, textAlign: 'left' }}>
+                  <strong>Tipo:</strong> {getReminderTypeLabel(reminder.type)}
+                </p>
+                <p style={{ fontSize: '0.875rem', color: '#6b7280', margin: 0, textAlign: 'left' }}>
+                  <strong>Fecha:</strong> {new Date(reminder.date).toLocaleDateString('es-AR')}
+                  {reminder.time && ` a las ${reminder.time}`}
+                </p>
+                {reminder.notes && (
+                  <p style={{ fontSize: '0.875rem', color: '#6b7280', margin: 0, textAlign: 'left' }}>
+                    <strong>Notas:</strong> {reminder.notes}
+                  </p>
+                )}
+                <div style={{ textAlign: 'center', marginTop: '1rem' }}>
                   <button
                     onClick={() => handleDeleteReminder(reminder.id)}
                     style={{
@@ -299,7 +207,7 @@ const RemindersScreen: React.FC = () => {
                     Eliminar
                   </button>
                 </div>
-              </ReminderCard>
+              </Card>
             ))
           )}
 

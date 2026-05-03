@@ -2,32 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import logo from '../assets/logo.png';
-
-const Container = styled.div`
-  background-color: white;
-  padding: 2rem;
-  border-radius: 0.5rem;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  max-width: 600px;
-  margin: 2rem auto;
-  box-sizing: border-box;
-`;
-
-const Title = styled.h1`
-  font-size: 1.5rem;
-  font-weight: 600;
-  margin-bottom: 1.5rem;
-  text-align: center;
-  color: #1f2937;
-`;
-
-const LogCard = styled.div`
-  padding: 1.5rem;
-  background-color: #f9fafb;
-  border-radius: 0.5rem;
-  border: 1px solid #e5e7eb;
-  margin-bottom: 1rem;
-`;
+import { Container, Title, Card, FormGroup, Label, Input, Select, Button, BackButton } from '../components/ui';
 
 const CardTitle = styled.h2`
   font-size: 1.125rem;
@@ -37,71 +12,6 @@ const CardTitle = styled.h2`
   display: flex;
   align-items: center;
   gap: 0.5rem;
-`;
-
-const FormGroup = styled.div`
-  margin-bottom: 1rem;
-`;
-
-const Label = styled.label`
-  display: block;
-  font-size: 0.875rem;
-  font-weight: 500;
-  color: #374151;
-  margin-bottom: 0.5rem;
-`;
-
-const Input = styled.input`
-  width: 100%;
-  padding: 0.75rem;
-  border: 1px solid #d1d5db;
-  border-radius: 0.375rem;
-  font-size: 1rem;
-`;
-
-const Select = styled.select`
-  width: 100%;
-  padding: 0.75rem;
-  border: 1px solid #d1d5db;
-  border-radius: 0.375rem;
-  font-size: 1rem;
-  background-color: white;
-`;
-
-const Button = styled.button`
-  width: 100%;
-  padding: 0.75rem 1.5rem;
-  background-color: #3b82f6;
-  color: white;
-  border: none;
-  border-radius: 0.375rem;
-  font-size: 1rem;
-  font-weight: 500;
-  cursor: pointer;
-  transition: background-color 0.2s;
-  margin-top: 0.5rem;
-
-  &:hover {
-    background-color: #2563eb;
-  }
-`;
-
-const BackButton = styled.button`
-  width: 100%;
-  padding: 0.75rem 1.5rem;
-  background-color: #6b7280;
-  color: white;
-  border: none;
-  border-radius: 0.375rem;
-  font-size: 1rem;
-  font-weight: 500;
-  cursor: pointer;
-  transition: background-color 0.2s;
-  margin-top: 1rem;
-
-  &:hover {
-    background-color: #4b5563;
-  }
 `;
 
 const DeleteButton = styled.button`
@@ -206,7 +116,7 @@ const CrisisLogScreen: React.FC = () => {
         <Container>
           <Title>Registro de Crisis y Eventos</Title>
 
-          <LogCard>
+          <Card>
             <CardTitle>➕ Registrar Nuevo Evento</CardTitle>
             <FormGroup>
               <Label>Tipo de Evento</Label>
@@ -254,7 +164,7 @@ const CrisisLogScreen: React.FC = () => {
             <Button onClick={handleAddEvent}>
               Registrar Evento
             </Button>
-          </LogCard>
+          </Card>
 
           <h3 style={{ fontSize: '1.125rem', fontWeight: 600, marginBottom: '1rem', color: '#374151' }}>
             Historial de Eventos ({events.length})
@@ -268,7 +178,7 @@ const CrisisLogScreen: React.FC = () => {
             events
               .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
               .map((event) => (
-              <LogCard key={event.id}>
+              <Card key={event.id}>
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
                   <div style={{ flex: 1 }}>
                     <CardTitle>
@@ -292,7 +202,7 @@ const CrisisLogScreen: React.FC = () => {
                     Eliminar
                   </DeleteButton>
                 </div>
-              </LogCard>
+              </Card>
             ))
           )}
 
