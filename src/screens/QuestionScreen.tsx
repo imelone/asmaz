@@ -1,6 +1,19 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import styled from 'styled-components';
+import logo from '../assets/logo.png';
 import { OptionButton, ButtonContent, OptionsContainer } from './QuestionScreen.styles';
+
+const Container = styled.div`
+  background-color: white;
+  padding: 1.5rem;
+  border-radius: 0.5rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 100%;
+  margin: 0 auto;
+  box-sizing: border-box;
+`;
 
 type ColorVariant = 'green' | 'blue' | 'yellow' | 'purple' | 'red';
 
@@ -111,11 +124,18 @@ const QuestionScreen: React.FC<QuestionScreenProps> = ({ questionNumber }) => {
   };
 
   return (
-    <div className="bg-white p-6 rounded-lg shadow-md">
-      <h2 className="text-2xl font-semibold mb-4">Pregunta {questionNumber} de {totalQuestions}</h2>
-      <p className="mb-6 text-lg">{currentQuestion.question}</p>
-      
-      <OptionsContainer>
+    <div className="bg-white min-h-screen py-4">
+      <div className="w-full mx-auto">
+        <div className="flex justify-center mb-2">
+          <img src={logo} alt="AsmaZ Logo" style={{ width: '120px', height: 'auto' }} />
+        </div>
+        <h2 className="text-xl text-center text-gray-600 mb-8">Controla tu asma</h2>
+        
+        <Container>
+          <h2 className="text-2xl font-semibold mb-4">Pregunta {questionNumber} de {totalQuestions}</h2>
+          <p className="mb-6 text-lg">{currentQuestion.question}</p>
+          
+          <OptionsContainer>
         {currentQuestion.options.map((option, index) => (
           <OptionButton
             key={index}
@@ -141,6 +161,8 @@ const QuestionScreen: React.FC<QuestionScreenProps> = ({ questionNumber }) => {
       >
         {questionNumber === totalQuestions ? 'Ver Resultados' : 'Siguiente Pregunta'}
       </button>
+        </Container>
+      </div>
     </div>
   );
 };

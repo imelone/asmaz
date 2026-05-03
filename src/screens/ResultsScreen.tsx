@@ -9,6 +9,7 @@ const ResultsContainer = styled.div`
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   max-width: 600px;
   margin: 0 auto;
+  box-sizing: border-box;
 `;
 
 const ScoreScale = styled.div`
@@ -102,7 +103,7 @@ const ResultsScreen: React.FC = () => {
   };
 
   return (
-    <div className="bg-gray-100 min-h-screen p-4">
+    <div className="bg-white min-h-screen py-4">
       <div className="max-w-4xl mx-auto">
         <h1 className="text-3xl font-bold text-center mb-2">Resultados</h1>
         <h2 className="text-xl text-center text-gray-600 mb-8">Control de Asma</h2>

@@ -10,6 +10,7 @@ const Container = styled.div`
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   max-width: 600px;
   margin: 2rem auto;
+  box-sizing: border-box;
 `;
 
 const Title = styled.h1`
@@ -187,7 +188,7 @@ const RemindersScreen: React.FC = () => {
   };
 
   return (
-    <div className="bg-gray-100 min-h-screen p-4">
+    <div className="bg-white min-h-screen py-4">
       <div className="max-w-4xl mx-auto">
         <div className="flex justify-center mb-2">
           <img src={logo} alt="AsmaZ Logo" style={{ width: '120px', height: 'auto' }} />

@@ -10,6 +10,7 @@ const Container = styled.div`
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   max-width: 600px;
   margin: 2rem auto;
+  box-sizing: border-box;
 `;
 
 const Title = styled.h1`
@@ -62,6 +63,37 @@ const Input = styled.input`
   border: 1px solid #d1d5db;
   border-radius: 0.375rem;
   font-size: 1rem;
+  background-color: white;
+  box-sizing: border-box;
+`;
+
+const DateInput = styled.input`
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid #d1d5db;
+  border-radius: 0.375rem;
+  font-size: 1rem;
+  background-color: white;
+  box-sizing: border-box;
+  color: #374151;
+  cursor: pointer;
+
+  &::-webkit-calendar-picker-indicator {
+    cursor: pointer;
+    opacity: 0.6;
+    filter: invert(0.4);
+    transition: opacity 0.2s;
+  }
+
+  &::-webkit-calendar-picker-indicator:hover {
+    opacity: 1;
+  }
+
+  &:focus {
+    outline: none;
+    border-color: #3b82f6;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+  }
 `;
 
 const Button = styled.button`
@@ -146,7 +178,7 @@ const DoseTrackingScreen: React.FC = () => {
   };
 
   return (
-    <div className="bg-gray-100 min-h-screen p-4">
+    <div className="bg-white min-h-screen py-4">
       <div className="max-w-4xl mx-auto">
         <div className="flex justify-center mb-2">
           <img src={logo} alt="AsmaZ Logo" style={{ width: '120px', height: 'auto' }} />
@@ -170,10 +202,7 @@ const DoseTrackingScreen: React.FC = () => {
                 <option value="6">6 puffs por día</option>
               </Select>
             </FormGroup>
-          </Section>
 
-          <Section>
-            <SectionTitle>Dosis de aerosol</SectionTitle>
             <FormGroup>
               <Label>Capacidad total del aerosol</Label>
               <Select value={aerosolDoses} onChange={(e) => setAerosolDoses(e.target.value)}>
@@ -192,7 +221,6 @@ const DoseTrackingScreen: React.FC = () => {
                 type="date"
                 value={aerosolStartDate}
                 onChange={(e) => setAerosolStartDate(e.target.value)}
-                style={{ textAlign: 'left' }}
               />
             </FormGroup>
 

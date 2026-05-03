@@ -5,11 +5,11 @@ import logo from '../assets/logo.png';
 
 const Container = styled.div`
   background-color: white;
-  padding: 2rem;
-  border-radius: 0.5rem;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  max-width: 600px;
-  margin: 2rem auto;
+  padding: 1.5rem;
+  width: 100%;
+  max-width: 100%;
+  margin: 0 auto;
+  box-sizing: border-box;
 `;
 
 const Title = styled.h1`
@@ -58,7 +58,8 @@ const UserInfoValue = styled.span`
 
 const Grid = styled.div`
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-auto-rows: 1fr;
   gap: 1rem;
 `;
 
@@ -66,14 +67,15 @@ const SquareButton = styled.button`
   background-color: white;
   border: 2px solid #e5e7eb;
   border-radius: 0.75rem;
-  padding: 1.5rem;
+  padding: 1rem;
   cursor: pointer;
   transition: all 0.2s;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  min-height: 140px;
+  width: 100%;
+  aspect-ratio: 1 / 1;
 
   &:hover {
     border-color: #3b82f6;
@@ -97,6 +99,8 @@ const ButtonLabel = styled.span`
   font-weight: 500;
   color: #374151;
   text-align: center;
+  overflow-wrap: break-word;
+  max-width: 100%;
 `;
 
 interface UserData {
@@ -121,12 +125,12 @@ const DashboardScreen: React.FC = () => {
   };
 
   return (
-    <div className="bg-gray-100 min-h-screen p-4">
-      <div className="max-w-4xl mx-auto">
-        <div className="flex justify-center mb-2">
+    <div className="bg-white min-h-screen py-4">
+      <div className="w-full mx-auto">
+        <div className="flex justify-center mb-1">
           <img src={logo} alt="AsmaZ Logo" style={{ width: '120px', height: 'auto' }} />
         </div>
-        <h2 className="text-xl text-center text-gray-600 mb-8">Controla tu asma</h2>
+        <h2 className="text-xl text-center text-gray-600 mb-2">Controla tu asma</h2>
         
         <Container>
           <Title>Conozca los beneficios</Title>

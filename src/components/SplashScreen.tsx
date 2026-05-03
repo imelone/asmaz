@@ -29,17 +29,16 @@ const SplashScreen: React.FC<SplashScreenProps> = ({ onComplete }) => {
         initial={{ scale: 0.8, opacity: 0 }}
         animate={{ scale: 1, opacity: 1 }}
         transition={{ duration: 0.5, delay: 0.2 }}
-        className="w-15 h-15"
+        style={{ width: '100%', textAlign: 'center', marginBottom: '1rem' }}
       >
         <img 
           src={logo} 
           alt="Logo" 
-          className="w-15 h-15 mb-4" 
-          sizes='10px'
+          style={{ width: '150px', height: '150px', objectFit: 'contain', display: 'block', margin: '0 auto' }}
         />
       </motion.div>
       <motion.p 
-        className="text-gray-600 mt-2"
+        style={{ textAlign: 'center', color: '#4b5563', margin: 0 }}
         initial={{ y: 20, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.5, delay: 0.6 }}

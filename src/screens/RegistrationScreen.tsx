@@ -142,7 +142,7 @@ const RegistrationScreen: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-100 p-2 flex items-center justify-center">
+    <div className="min-h-screen bg-white py-2 px-0 flex items-center justify-center">
       <div className="w-full">
         <div className="flex justify-center mb-2">
           <img src={logo} alt="AsmaZ Logo" style={{ width: '120px', height: 'auto' }} />
