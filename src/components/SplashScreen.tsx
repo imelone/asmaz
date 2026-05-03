@@ -20,7 +20,19 @@ const SplashScreen: React.FC<SplashScreenProps> = ({ onComplete }) => {
 
   return (
     <motion.div
-      className="fixed inset-0 bg-white z-50 flex flex-col items-center justify-center"
+      style={{
+        position: 'fixed',
+        top: 0,
+        left: 0,
+        right: 0,
+        bottom: 0,
+        backgroundColor: 'white',
+        zIndex: 50,
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        justifyContent: 'center'
+      }}
       initial={{ opacity: 1 }}
       animate={{ opacity: visible ? 1 : 0 }}
       transition={{ duration: 0.5 }}

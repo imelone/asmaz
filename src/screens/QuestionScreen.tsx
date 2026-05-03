@@ -121,8 +121,8 @@ const QuestionScreen: React.FC<QuestionScreenProps> = ({ questionNumber }) => {
         <h2 style={{ fontSize: '1.25rem', textAlign: 'center', color: '#4b5563', marginBottom: '2rem' }}>Controla tu asma</h2>
         
         <Container>
-          <h2 className="text-2xl font-semibold mb-4">Pregunta {questionNumber} de {totalQuestions}</h2>
-          <p className="mb-6 text-lg">{currentQuestion.question}</p>
+          <h2 style={{ fontSize: '1.5rem', fontWeight: 600, marginBottom: '1rem' }}>Pregunta {questionNumber} de {totalQuestions}</h2>
+          <p style={{ fontSize: '1.125rem', marginBottom: '1.5rem' }}>{currentQuestion.question}</p>
           
           <OptionsContainer>
         {currentQuestion.options.map((option, index) => (
