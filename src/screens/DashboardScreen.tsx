@@ -96,6 +96,7 @@ interface UserData {
 const DashboardScreen: React.FC = () => {
   const navigate = useNavigate();
   const [userData, setUserData] = useState<UserData | null>(null);
+  const [showLogoutConfirm, setShowLogoutConfirm] = useState(false);
 
   useEffect(() => {
     const savedData = localStorage.getItem('userData');
@@ -106,6 +107,11 @@ const DashboardScreen: React.FC = () => {
 
   const handleNavigate = (path: string) => {
     navigate(path);
+  };
+
+  const handleLogout = () => {
+    localStorage.removeItem('userData');
+    navigate('/registration');
   };
 
   return (
@@ -119,18 +125,91 @@ const DashboardScreen: React.FC = () => {
         <Container>
           <Title>Conozca los beneficios</Title>
           
-          <UserInfoBar>
-            <UserInfoItem>
-              <UserInfoIcon>✉️</UserInfoIcon>
-              <UserInfoLabel>Email</UserInfoLabel>
-              <UserInfoValue>{userData?.email || 'No disponible'}</UserInfoValue>
-            </UserInfoItem>
-            <UserInfoItem>
-              <UserInfoIcon>🎂</UserInfoIcon>
-              <UserInfoLabel>Edad</UserInfoLabel>
-              <UserInfoValue>{userData?.age ? `${userData.age} años` : 'No disponible'}</UserInfoValue>
-            </UserInfoItem>
+          <UserInfoBar style={{ flexDirection: 'column', gap: '1rem' }}>
+            <div style={{ display: 'flex', width: '100%' }}>
+              <UserInfoItem>
+                <UserInfoIcon>✉️</UserInfoIcon>
+                <UserInfoLabel>Email</UserInfoLabel>
+                <UserInfoValue>{userData?.email || 'No disponible'}</UserInfoValue>
+              </UserInfoItem>
+              <UserInfoItem>
+                <UserInfoIcon>🎂</UserInfoIcon>
+                <UserInfoLabel>Edad</UserInfoLabel>
+                <UserInfoValue>{userData?.age ? `${userData.age} años` : 'No disponible'}</UserInfoValue>
+              </UserInfoItem>
+            </div>
+            <div style={{ textAlign: 'center' }}>
+              <button
+                onClick={() => setShowLogoutConfirm(true)}
+                style={{
+                  backgroundColor: 'white',
+                  border: '1px solid #e5e7eb',
+                  borderRadius: '0.5rem',
+                  padding: '0.5rem 1.5rem',
+                  cursor: 'pointer',
+                  fontSize: '0.875rem',
+                  color: '#ef4444',
+                  fontWeight: 500
+                }}
+              >
+                Cerrar sesión
+              </button>
+            </div>
           </UserInfoBar>
+
+          {showLogoutConfirm && (
+            <div style={{
+              position: 'fixed',
+              top: 0, left: 0, right: 0, bottom: 0,
+              backgroundColor: 'rgba(0,0,0,0.4)',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              zIndex: 100
+            }}>
+              <div style={{
+                backgroundColor: 'white',
+                padding: '1.5rem',
+                borderRadius: '0.75rem',
+                maxWidth: '320px',
+                width: '90%',
+                textAlign: 'center'
+              }}>
+                <p style={{ marginBottom: '1.5rem', fontSize: '1rem' }}>
+                  ¿Está seguro que desea cerrar sesión?
+                </p>
+                <div style={{ display: 'flex', gap: '0.75rem', justifyContent: 'center' }}>
+                  <button
+                    onClick={() => setShowLogoutConfirm(false)}
+                    style={{
+                      padding: '0.5rem 1rem',
+                      borderRadius: '0.5rem',
+                      border: '1px solid #e5e7eb',
+                      background: 'white',
+                      cursor: 'pointer',
+                      fontSize: '0.875rem'
+                    }}
+                  >
+                    Cancelar
+                  </button>
+                  <button
+                    onClick={handleLogout}
+                    style={{
+                      padding: '0.5rem 1rem',
+                      borderRadius: '0.5rem',
+                      border: 'none',
+                      background: '#ef4444',
+                      color: 'white',
+                      cursor: 'pointer',
+                      fontSize: '0.875rem'
+                    }}
+                  >
+                    Cerrar sesión
+                  </button>
+                </div>
+              </div>
+            </div>
+          )}
 
           <Grid>
             <SquareButton onClick={() => handleNavigate('/act')}>
