@@ -7,25 +7,41 @@ import { Container, Button } from '../components/ui';
 const ScoreScale = styled.div`
   position: relative;
   height: 12px;
-  background: linear-gradient(to right, #10b981, #f59e0b, #ef4444);
+  background: linear-gradient(to right,
+    #ef4444 0%, #ef4444 60%,
+    #f59e0b 60%, #f59e0b 80%,
+    #10b981 80%, #10b981 100%
+  );
   border-radius: 6px;
   margin: 2.5rem 0 0.5rem 0;
   overflow: visible;
   box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
 `;
 
-const ScoreMarker = styled.div<{ position: number }>`
+const ZoneLine = styled.div<{ position: number }>`
   position: absolute;
-  top: -30px;
+  top: -3px;
+  left: ${props => props.position}%;
+  width: 2px;
+  height: 18px;
+  background: white;
+  transform: translateX(-50%);
+  z-index: 10;
+  box-shadow: 0 0 2px rgba(0,0,0,0.2);
+`;
+
+const ScoreMarker = styled.div<{ position: number; score: number }>`
+  position: absolute;
+  top: -32px;
   left: ${props => props.position}%;
   transform: translateX(-50%);
   display: flex;
   flex-direction: column-reverse;
   align-items: center;
   z-index: 20;
-  
+
   &::before {
-    content: '${props => Math.round(props.position * 12 / 100)}';
+    content: "${props => props.score}";
     font-weight: bold;
     color: #1f2937;
     background: white;
@@ -36,10 +52,10 @@ const ScoreMarker = styled.div<{ position: number }>`
     white-space: nowrap;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
   }
-  
+
   &::after {
     content: '▼';
-    color: #3b82f6;
+    color: #1f2937;
     font-size: 1.25rem;
     line-height: 1;
     text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
@@ -70,16 +86,16 @@ const ResultsScreen: React.FC = () => {
   const percentage = Math.min(100, Math.max(0, Math.round((score / maxScore) * 100)));
   
   const getResultMessage = () => {
-    if (score >= 20) return 'BUEN CONTROL - ¡Excelente! Tu asma está bien controlada.';
-    if (score >= 16) return 'PARCIALMENTE CONTROLADO - Considera revisar tu plan de acción para el asma.';
-    return 'MAL CONTROLADO - Es recomendable que consultes a tu médico lo antes posible.';
+    if (score >= 20) return 'BIEN CONTROLADA - ¡Excelente! Tu asma está bien controlada.';
+    if (score >= 16) return 'PARCIALMENTE CONTROLADA - Considera revisar tu plan de acción para el asma.';
+    return 'MAL CONTROLADA - Es recomendable que consultes a tu médico lo antes posible.';
   };
 
   return (
     <div className="bg-white min-h-screen py-4">
       <div className="max-w-4xl mx-auto">
-        <h1 className="text-3xl font-bold text-center mb-2">Resultados</h1>
-        <h2 className="text-xl text-center text-gray-600 mb-8">Control de Asma</h2>
+        <h1 className="text-3xl font-bold text-center mb-2">Test de Control del Asma</h1>
+        <h2 className="text-xl text-center text-gray-600 mb-8">Resultado Final</h2>
         
         <Container>
           <h3 className="text-xl font-semibold mb-4">Tu puntuación: {score} de {maxScore} puntos</h3>
@@ -92,15 +108,16 @@ const ResultsScreen: React.FC = () => {
           
           <div className="relative">
             <ScoreScale>
-              <ScoreMarker position={percentage} />
+              <ZoneLine position={60} />
+              <ZoneLine position={80} />
+              <ScoreMarker position={percentage} score={score} />
             </ScoreScale>
-           
           </div>
           
           <ScoreLabels>
-            <span>Bien controlado</span>
-            <span>Parcialmente controlado</span>
-            <span>Poco controlado</span>
+            <span>Mal controlada</span>
+            <span>Parcialmente controlada</span>
+            <span>Bien controlada</span>
           </ScoreLabels>
           
           <Button onClick={() => navigate('/dashboard')}>

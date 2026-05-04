@@ -123,8 +123,6 @@ const DashboardScreen: React.FC = () => {
         <h2 className="text-xl text-center text-gray-600 mb-2">Controla tu asma</h2>
         
         <Container>
-          <Title>Conozca los beneficios</Title>
-          
           <UserInfoBar style={{ flexDirection: 'column', gap: '1rem' }}>
             <div style={{ display: 'flex', width: '100%' }}>
               <UserInfoItem>
