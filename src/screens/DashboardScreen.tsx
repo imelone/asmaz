@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import logo from '../assets/logo.png';
-import { Container, Title } from '../components/ui';
+import { Container } from '../components/ui';
 
 const UserInfoBar = styled.div`
   display: flex;
