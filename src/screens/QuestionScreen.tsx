@@ -112,6 +112,14 @@ const QuestionScreen: React.FC<QuestionScreenProps> = ({ questionNumber }) => {
     }
   };
 
+  const handleBack = () => {
+    if (questionNumber > 1) {
+      navigate(`/question/${questionNumber - 1}`);
+    } else {
+      navigate('/dashboard');
+    }
+  };
+
   return (
     <div style={{ backgroundColor: 'white', minHeight: '100vh', paddingTop: '1rem', paddingBottom: '1rem' }}>
       <div style={{ width: '100%', marginLeft: 'auto', marginRight: 'auto' }}>
@@ -146,7 +154,28 @@ const QuestionScreen: React.FC<QuestionScreenProps> = ({ questionNumber }) => {
       >
         {questionNumber === totalQuestions ? 'Ver Resultados' : 'Siguiente Pregunta'}
       </Button>
+
         </Container>
+
+        <button
+          onClick={handleBack}
+          style={{
+            position: 'fixed',
+            top: '1rem',
+            left: '1rem',
+            cursor: 'pointer',
+            fontSize: '2.25rem',
+            color: '#6b7280',
+            zIndex: 50,
+            padding: '0.5rem',
+            background: 'none',
+            border: 'none',
+            lineHeight: 1
+          }}
+          aria-label="Volver"
+        >
+          ‹
+        </button>
       </div>
     </div>
   );

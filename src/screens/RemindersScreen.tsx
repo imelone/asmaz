@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import logo from '../assets/logo.png';
-import { Container, Title, Card, FormGroup, Label, Input, Select, Button, BackButton } from '../components/ui';
+import { Container, Title, Card, FormGroup, Label, Input, Select, Button } from '../components/ui';
 
 const CardTitle = styled.h2`
   font-size: 1.125rem;
@@ -211,10 +211,27 @@ const RemindersScreen: React.FC = () => {
             ))
           )}
 
-          <BackButton onClick={() => navigate('/dashboard')}>
-            Volver al Dashboard
-          </BackButton>
         </Container>
+
+        <button
+          onClick={() => navigate('/dashboard')}
+          style={{
+            position: 'fixed',
+            top: '1rem',
+            left: '1rem',
+            cursor: 'pointer',
+            fontSize: '2.25rem',
+            color: '#6b7280',
+            zIndex: 50,
+            padding: '0.5rem',
+            background: 'none',
+            border: 'none',
+            lineHeight: 1
+          }}
+          aria-label="Volver"
+        >
+          ‹
+        </button>
       </div>
     </div>
   );

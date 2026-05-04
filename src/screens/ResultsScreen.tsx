@@ -106,7 +106,28 @@ const ResultsScreen: React.FC = () => {
           <Button onClick={() => navigate('/dashboard')}>
             Volver al inicio
           </Button>
+
         </Container>
+
+        <button
+          onClick={() => navigate('/dashboard')}
+          style={{
+            position: 'fixed',
+            top: '1rem',
+            left: '1rem',
+            cursor: 'pointer',
+            fontSize: '2.25rem',
+            color: '#6b7280',
+            zIndex: 50,
+            padding: '0.5rem',
+            background: 'none',
+            border: 'none',
+            lineHeight: 1
+          }}
+          aria-label="Volver"
+        >
+          ‹
+        </button>
       </div>
     </div>
   );
